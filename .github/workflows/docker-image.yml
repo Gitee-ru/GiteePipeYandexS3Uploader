@@ -16,3 +16,5 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag giteeru/s3uploaddir:$(date +%s)
+    - name: Push the Docker image
+      run: docker push giteeru/s3uploaddir:$(date +%s)
