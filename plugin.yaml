@@ -1,0 +1,76 @@
+version: v1.0.0
+kind: Kubernetes
+dynamicRender: true
+metadata:
+    name: S3Uploader
+    displayName: S3Uploader
+    description: |
+       Tool for uploading data to the S3
+    version: v0.0.1
+    developer: gitee-team
+    latest: true
+    public: true
+    builtin: false
+    labels:
+    - pipe
+    - Deploy
+    icon: |
+!       <svg xmlns="http://www.w3.org/2000/svg" aria-label="Docker" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#ffffff"/><path stroke="#066da5" stroke-width="38" d="M296 226h42m-92 0h42m-91 0h42m-91 0h41m-91 0h42m8-46h41m8 0h42m7 0h42m-42-46h42"/><path fill="#066da5" d="m472 228s-18-17-55-11c-4-29-35-46-35-46s-29 35-8 74c-6 3-16 7-31 7H68c-5 19-5 145 133 145 99 0 173-46 208-130 52 4 63-39 63-39"/></svg>
+    example: ''
+spec:
+    image: 'giteeru/s3uploader:v0.0.1'
+    endpoint: |
+!      /usr/bin/artifactsextractor -debug && \
+       /usr/bin/s3ycdiruploader -uploaddir "${UPLOAD_DIR}" -bucket "${AWS_BUCKET}" -akid "${AWS_ACCESS_KEY_ID}" -asak "${AWS_SECRET_ACCESS_KEY}"
+    resources:
+        requests:
+            cpu: 100m
+            memory: 256Mi
+        limits:
+            cpu: 500m
+            memory: 512Mi
+arguments:
+  - hidden: false
+    defaultValue: ''
+    description: Directory, where data will be uploaded.
+    rules: ^.{1,64}$
+    label: Uploading Directory
+    remote: null
+    type: input
+    hint: null
+    name: UPLOAD_DIR
+    alias: UPLOAD_DIR
+    must: true
+  - hidden: false
+    defaultValue: ''
+    description: Name of the bucket, that will be used.
+    rules: ^.{1,64}$
+    label: S3 bucket name
+    remote: null
+    type: input
+    hint: null
+    name: AWS_BUCKET
+    alias: AWS_BUCKET
+    must: true
+  - hidden: false
+    defaultValue: ''
+    description: ID of the access key, that was recieved while bucket creation.
+    rules: ^.{1,64}$
+    label: AWS access key ID
+    remote: null
+    type: password
+    hint: null
+    name: AWS_ACCESS_KEY_ID
+    alias: AWS_ACCESS_KEY_ID
+    must: true
+  - hidden: false
+    defaultValue: ''
+    description: Access key, that was recieved while bucket creation.
+    rules: ^.{1,64}$
+    label: AWS secret key
+    remote: null
+    type: password
+    hint: null
+    name: AWS_SECRET_ACCESS_KEY
+    alias: AWS_SECRET_ACCESS_KEY
+    must: true
