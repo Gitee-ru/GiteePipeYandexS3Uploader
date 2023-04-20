@@ -1,34 +1,50 @@
-version: v1.0.0
-kind: Kubernetes
-dynamicRender: true
 metadata:
-    name: S3Uploader
-    displayName: S3Uploader
-    description: |
-       Tool for uploading data to the S3
-    version: v0.0.1
-    developer: gitee-team
-    latest: true
-    public: true
-    builtin: false
-    labels:
+  displayName: S3Uploader
+  builtin: false
+  icon: >
+    <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"
+    class="yc-icon ServiceIcon" fill="currentColor" stroke="none"
+    aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16
+    16">
+
+    <path d="M15 5a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM14 1a1 1 0 0 0-1-1H3a1 1
+    0 0 0-1 1v2h12zM15 8H1a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1
+    0 0 0-1-1zm-5 5H6a1 1 0 0 1 0-2h4a1 1 0 0 1 0 2z"></path>
+
+    </svg></svg>
+  description: |
+    Tool for uploading data to the S3
+  helpUrl: null
+  version: v0.0.1
+  example: ''
+  labels:
     - pipe
     - Deploy
-    icon: |
-        PHN2ZyBjbGFzcz0ic3ZnLWljb24iIHN0eWxlPSJ3aWR0aDogMWVtOyBoZWlnaHQ6IDFlbTt2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO2ZpbGw6IGN1cnJlbnRDb2xvcjtvdmVyZmxvdzogaGlkZGVuOyIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik04MzQuMyA3MDUuN2MwIDgyLjItNjYuOCAxNDktMTQ5IDE0OUgzMjUuOWMtODIuMiAwLTE0OS02Ni44LTE0OS0xNDlWMzQ2LjRjMC04Mi4yIDY2LjgtMTQ5IDE0OS0xNDloMTI5Ljh2LTQyLjdIMzI1LjljLTEwNS43IDAtMTkxLjcgODYtMTkxLjcgMTkxLjd2MzU5LjNjMCAxMDUuNyA4NiAxOTEuNyAxOTEuNyAxOTEuN2gzNTkuM2MxMDUuNyAwIDE5MS43LTg2IDE5MS43LTE5MS43VjU3NS45aC00Mi43djEyOS44eiIgIC8+PHBhdGggZD0iTTg4OS43IDE2My40Yy0yMi45LTIyLjktNTMtMzQuNC04My4xLTM0LjRzLTYwLjEgMTEuNS04My4xIDM0LjRMMzEyIDU3NC45Yy0xNi45IDE2LjktMjcuOSAzOC44LTMxLjIgNjIuNWwtMTkgMTMyLjhjLTEuNiAxMS40IDcuMyAyMS4zIDE4LjQgMjEuMyAwLjkgMCAxLjgtMC4xIDIuNy0wLjJsMTMyLjgtMTljMjMuNy0zLjQgNDUuNi0xNC4zIDYyLjUtMzEuMmw0MTEuNS00MTEuNWM0NS45LTQ1LjkgNDUuOS0xMjAuMyAwLTE2Ni4yek0zNjIgNTg1LjNMNzEwLjMgMjM3IDgxNiAzNDIuOCA0NjcuOCA2OTEuMSAzNjIgNTg1LjN6TTQwOS43IDczMGwtMTAxLjEgMTQuNEwzMjMgNjQzLjNjMS40LTkuNSA0LjgtMTguNyA5LjktMjYuN0w0MzYuMyA3MjBjLTggNS4yLTE3LjEgOC43LTI2LjYgMTB6IG00NDkuOC00MzAuN2wtMTMuMyAxMy4zLTEwNS43LTEwNS44IDEzLjMtMTMuM2MxNC4xLTE0LjEgMzIuOS0yMS45IDUyLjktMjEuOXMzOC44IDcuOCA1Mi45IDIxLjljMjkuMSAyOS4yIDI5LjEgNzYuNy0wLjEgMTA1Ljh6IiAgLz48L3N2Zz4= 
-    example: ''
+  public: true
+  organization: null
+  name: S3Uploader
+  developer: gitee-team
+  latest: true
+dynamicRender: true
+environments: null
+kind: Kubernetes
+companyUuid: itone
+version: v1.0.0
+cacheDefault: null
 spec:
-    image: 'giteeru/s3uploader:v0.0.1'
-    endpoint: |
-      /usr/bin/artifactsextractor -debug && \
-       /usr/bin/s3ycdiruploader -uploaddir "${UPLOAD_DIR}" -bucket "${AWS_BUCKET}" -akid "${AWS_ACCESS_KEY_ID}" -asak "${AWS_SECRET_ACCESS_KEY}"
-    resources:
-        requests:
-            cpu: 100m
-            memory: 256Mi
-        limits:
-            cpu: 500m
-            memory: 512Mi
+  image: giteeru/s3uploader:v0.0.1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  endpoint: |
+    /usr/bin/artifactsextractor -debug && \
+     /usr/bin/s3ycdiruploader -uploaddir "${UPLOAD_DIR}" -bucket "${AWS_BUCKET}" -akid "${AWS_ACCESS_KEY_ID}" -asak "${AWS_SECRET_ACCESS_KEY}"
+result: null
 arguments:
   - hidden: false
     defaultValue: ''
@@ -37,10 +53,20 @@ arguments:
     label: Uploading Directory
     remote: null
     type: input
+    toolbar:
+      addButton: false
+    showCondition: null
+    children: null
     hint: null
+    dateSource: null
     name: UPLOAD_DIR
     alias: UPLOAD_DIR
     must: true
+    style:
+      width: '1'
+    table:
+      showHeader: true
+      showSerialNumber: true
   - hidden: false
     defaultValue: ''
     description: Name of the bucket, that will be used.
@@ -48,10 +74,20 @@ arguments:
     label: S3 bucket name
     remote: null
     type: input
+    toolbar:
+      addButton: false
+    showCondition: null
+    children: null
     hint: null
+    dateSource: null
     name: AWS_BUCKET
     alias: AWS_BUCKET
     must: true
+    style:
+      width: '1'
+    table:
+      showHeader: true
+      showSerialNumber: true
   - hidden: false
     defaultValue: ''
     description: ID of the access key, that was recieved while bucket creation.
@@ -59,10 +95,20 @@ arguments:
     label: AWS access key ID
     remote: null
     type: password
+    toolbar:
+      addButton: false
+    showCondition: null
+    children: null
     hint: null
+    dateSource: null
     name: AWS_ACCESS_KEY_ID
     alias: AWS_ACCESS_KEY_ID
     must: true
+    style:
+      width: '1'
+    table:
+      showHeader: true
+      showSerialNumber: true
   - hidden: false
     defaultValue: ''
     description: Access key, that was recieved while bucket creation.
@@ -70,7 +116,18 @@ arguments:
     label: AWS secret key
     remote: null
     type: password
+    toolbar:
+      addButton: false
+    showCondition: null
+    children: null
     hint: null
+    dateSource: null
     name: AWS_SECRET_ACCESS_KEY
     alias: AWS_SECRET_ACCESS_KEY
     must: true
+    style:
+      width: '1'
+    table:
+      showHeader: true
+      showSerialNumber: true
+cacheSwitch: false
