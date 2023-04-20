@@ -43,7 +43,7 @@ spec:
       memory: 256Mi
   endpoint: |
     /usr/bin/artifactsextractor -debug && \
-     /usr/bin/s3ycdiruploader -uploaddir "${UPLOAD_DIR}" -bucket "${AWS_BUCKET}" -akid "${AWS_ACCESS_KEY_ID}" -asak "${AWS_SECRET_ACCESS_KEY}"
+     /usr/bin/s3ycdiruploader -uploaddir Test -bucket gitee-site-media-resources -akid YCAJErR-S6lib3SxtKK0FbSpi -asak YCPvrE4SWxWqtiIUQXQ5hTemfhoxnXm6THju0FE0
 result: null
 arguments:
   - hidden: false
