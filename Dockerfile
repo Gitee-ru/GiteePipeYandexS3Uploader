@@ -10,4 +10,4 @@ COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /src/s3ycdiruploader /usr/bin/s3ycdiruploader
 USER app
-ENTRYPOINT ["/usr/bin/s3ycdiruploader"]
+
