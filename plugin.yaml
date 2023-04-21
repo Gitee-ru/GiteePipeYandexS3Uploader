@@ -42,8 +42,7 @@ spec:
       cpu: 100m
       memory: 256Mi
   endpoint: |
-    /usr/bin/artifactsextractor -debug && \
-     /usr/bin/s3ycdiruploader -uploaddir "${UPLOAD_DIR}" -bucket "${AWS_BUCKET}" -akid "${AWS_ACCESS_KEY_ID}" -asak "${AWS_SECRET_ACCESS_KEY}"
+     /src/s3ycdiruploader -uploaddir "${UPLOAD_DIR}" -bucket "${AWS_BUCKET}" -akid "${AWS_ACCESS_KEY_ID}" -asak "${AWS_SECRET_ACCESS_KEY}"
 result: null
 arguments:
   - hidden: false
