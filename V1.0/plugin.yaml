@@ -16,7 +16,7 @@ metadata:
   description: |
     Tool for uploading data to the S3
   helpUrl: null
-  version: v0.0.1
+  version: v0.0.2
   example: ''
   labels:
     - pipe
@@ -24,6 +24,7 @@ metadata:
   public: true
   organization: null
   name: S3Uploader
+  parserJobType: null
   developer: gitee-team
   latest: true
 dynamicRender: true
@@ -33,7 +34,7 @@ companyUuid: itone
 version: v1.0.0
 cacheDefault: null
 spec:
-  image: giteeru/s3uploader:v0.0.1
+  image: giteeru/yandexs3uploader
   resources:
     limits:
       cpu: 500m
@@ -41,15 +42,48 @@ spec:
     requests:
       cpu: 100m
       memory: 256Mi
-  endpoint: |
-     /src/s3ycdiruploader -uploaddir "${UPLOAD_DIR}" -bucket "${AWS_BUCKET}" -akid "${AWS_ACCESS_KEY_ID}" -asak "${AWS_SECRET_ACCESS_KEY}"
+  endpoint: >
+    wget ${ARTIFACT_BUILD} -O export.zip 
+
+    unzip export.zip
+
+    /src/s3ycdiruploader -uploaddir
+    /root/workspace/${AGILE_MODULE_NAME}/${UPLOAD_DIR} -bucket "${AWS_BUCKET}"
+    -akid "${AWS_ACCESS_KEY_ID}" -asak "${AWS_SECRET_ACCESS_KEY}"
 result: null
 arguments:
-  - hidden: false
-    defaultValue: ''
-    description: Directory, where data will be uploaded.
+  - depend: null
+    hidden: false
+    defaultValue: ARTIFACT_BUILD
+    certificate: null
+    description: Reference to parameter that contains link to the build arteract
     rules: ^.{1,64}$
-    label: Uploading Directory
+    label: Select Artifact
+    remote: null
+    type: input
+    toolbar:
+      addButton: false
+    showCondition: null
+    children: null
+    hint: null
+    dateSource: null
+    name: SELECT_ARTEFACT
+    alias: SELECT_ARTEFACT
+    must: true
+    style:
+      width: '1'
+    table:
+      showHeader: true
+      showSerialNumber: true
+  - depend: null
+    hidden: false
+    defaultValue: build
+    certificate: null
+    description: >-
+      Realative path to the directory of the task's runtime environment, where from content will be
+      copied to the target bucket.
+    rules: ^.{1,64}$
+    label: Uploading Source
     remote: null
     type: input
     toolbar:
@@ -66,8 +100,10 @@ arguments:
     table:
       showHeader: true
       showSerialNumber: true
-  - hidden: false
+  - depend: null
+    hidden: false
     defaultValue: ''
+    certificate: null
     description: Name of the bucket, that will be used.
     rules: ^.{1,64}$
     label: S3 bucket name
@@ -87,8 +123,10 @@ arguments:
     table:
       showHeader: true
       showSerialNumber: true
-  - hidden: false
+  - depend: null
+    hidden: false
     defaultValue: ''
+    certificate: null
     description: ID of the access key, that was recieved while bucket creation.
     rules: ^.{1,64}$
     label: AWS access key ID
@@ -108,8 +146,10 @@ arguments:
     table:
       showHeader: true
       showSerialNumber: true
-  - hidden: false
+  - depend: null
+    hidden: false
     defaultValue: ''
+    certificate: null
     description: Access key, that was recieved while bucket creation.
     rules: ^.{1,64}$
     label: AWS secret key
